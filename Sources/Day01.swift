@@ -1,37 +1,37 @@
 struct Day01 {
-    /// Left side numbers sorted.
-    let left: [Int] =
-    data
-        .split(separator: "\n")
-        .compactMap {
-            $0.split(separator: " ").first
-        }
-        .compactMap { Int($0) }
-        .sorted()
 
-    /// Right side numbers sorted.
-    let right: [Int] =
-    data
-        .split(separator: "\n")
-        .compactMap {
-            $0.split(separator: " ").last
+    let entities: (left: [Int], right: [Int]) = {
+        var left = [Int]()
+        var right = [Int]()
+
+        data.split(separator: "\n").forEach { line in
+            let components = line.split(separator: " ")
+            if let first = components.first, let last = components.last {
+                if let leftValue = Int(first) {
+                    left.append(leftValue)
+                }
+                if let rightValue = Int(last) {
+                    right.append(rightValue)
+                }
+            }
         }
-        .compactMap { Int($0) }
-        .sorted()
+
+        return (left.sorted(), right.sorted())
+    }()
 
     // Replace this with your solution for the first part of the day's challenge.
     func part1() -> Int {
-        zip(left, right)
+        zip(entities.left, entities.right)
             .reduce(0, { $0 + abs($1.0 - $1.1) })
     }
 
     // Replace this with your solution for the second part of the day's challenge.
     func part2() -> Int {
-        let rightCount = right.reduce(into: [:]) { counts, num in
+        let rightCount = entities.right.reduce(into: [:]) { counts, num in
             counts[num, default: 0] += 1
         }
 
-        return left.reduce(0) { total, num in
+        return entities.left.reduce(0) { total, num in
             total + num * (rightCount[num] ?? 0)
         }
     }

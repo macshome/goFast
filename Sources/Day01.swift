@@ -4,7 +4,7 @@ struct Day01 {
         var left = [Int]()
         var right = [Int]()
 
-        data.split(separator: "\n").forEach { line in
+        data.enumerateLines { line, stop in
             let components = line.split(separator: " ")
             if let first = components.first, let last = components.last {
                 if let leftValue = Int(first) {
@@ -13,6 +13,7 @@ struct Day01 {
                 if let rightValue = Int(last) {
                     right.append(rightValue)
                 }
+
             }
         }
 

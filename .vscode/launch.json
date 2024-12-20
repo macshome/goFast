@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:goFast}",
+            "name": "Debug Day1",
+            "program": "${workspaceFolder:goFast}/.build/debug/Day1",
+            "preLaunchTask": "swift: Build Debug Day1"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:goFast}",
+            "name": "Release Day1",
+            "program": "${workspaceFolder:goFast}/.build/release/Day1",
+            "preLaunchTask": "swift: Build Release Day1"
+        }
+    ]
+}
